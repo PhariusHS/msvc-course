@@ -1,6 +1,8 @@
 package com.luca.springcloud.msvc.courses.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "courses")
@@ -10,12 +12,10 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "Name is necessary")
+    @Size(min = 3, message = "Name needs to have at least 3 characters")
     private String name;
 
-    @Column(unique = true)
-    private String email;
-
-    private String password;
 
     public Long getId() {
         return id;
@@ -33,19 +33,4 @@ public class Course {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

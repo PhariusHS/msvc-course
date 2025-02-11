@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-coursesdb-container
+    restart: always
+    environment:
+      POSTGRES_DB: msvc_courses
+      POSTGRES_USER: pharius
+      POSTGRES_PASSWORD: password123
+    ports:
+      - "8000:5432"

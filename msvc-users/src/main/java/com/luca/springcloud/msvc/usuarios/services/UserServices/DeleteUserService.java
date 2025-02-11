@@ -1,9 +1,10 @@
 package com.luca.springcloud.msvc.usuarios.services.UserServices;
 
 import com.luca.springcloud.msvc.usuarios.Command;
+import com.luca.springcloud.msvc.usuarios.exceptions.EntityNotFoundException;
+import com.luca.springcloud.msvc.usuarios.exceptions.ErrorMessages;
 import com.luca.springcloud.msvc.usuarios.models.User;
 import com.luca.springcloud.msvc.usuarios.repositories.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,6 @@ public class DeleteUserService implements Command<Long, Void> {
             userRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
-        throw new EntityNotFoundException("Not user with id "+ id +" founded");
+        throw new EntityNotFoundException(ErrorMessages.ENTITY_NOT_FOUND, "User");
     }
 }

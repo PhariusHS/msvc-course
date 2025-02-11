@@ -3,9 +3,10 @@ package com.luca.springcloud.msvc.courses.UserServices;
 
 
 import com.luca.springcloud.msvc.courses.Command;
+import com.luca.springcloud.msvc.courses.exceptions.EntityNotFoundException;
+import com.luca.springcloud.msvc.courses.exceptions.ErrorMessages;
 import com.luca.springcloud.msvc.courses.models.Course;
 import com.luca.springcloud.msvc.courses.repositories.CourseRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,6 @@ public class DeleteCourseService implements Command<Long, Void> {
             courseRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
-        throw new EntityNotFoundException("Not user with id "+ id +" founded");
+        throw new EntityNotFoundException(ErrorMessages.ENTITY_NOT_FOUND, "Course");
     }
 }

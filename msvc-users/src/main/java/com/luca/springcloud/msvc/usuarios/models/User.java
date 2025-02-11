@@ -1,6 +1,7 @@
 package com.luca.springcloud.msvc.usuarios.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 @Entity
@@ -11,11 +12,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "Name is necessary")
+    @Size(min = 3, message = "Name should have at least 3 characters")
     private String name;
 
+    @NotEmpty(message = "Email is necessary")
+    @Email(message = "Not correct email format")
     @Column(unique = true)
     private String email;
 
+    @NotEmpty
     private String password;
 
     public Long getId() {

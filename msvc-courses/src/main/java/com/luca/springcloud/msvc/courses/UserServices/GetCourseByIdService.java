@@ -2,10 +2,11 @@ package com.luca.springcloud.msvc.courses.UserServices;
 
 
 import com.luca.springcloud.msvc.courses.Query;
+import com.luca.springcloud.msvc.courses.exceptions.EntityNotFoundException;
+import com.luca.springcloud.msvc.courses.exceptions.ErrorMessages;
 import com.luca.springcloud.msvc.courses.models.Course;
 import com.luca.springcloud.msvc.courses.models.CourseDTO;
 import com.luca.springcloud.msvc.courses.repositories.CourseRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,6 @@ public class GetCourseByIdService implements Query<Long, CourseDTO> {
         if(foundedCourse.isPresent()){
             return ResponseEntity.status(HttpStatus.OK).body(new CourseDTO(foundedCourse.get()));
         }
-        throw new EntityNotFoundException("Not user with id "+ id +" founded");
+        throw new EntityNotFoundException(ErrorMessages.ENTITY_NOT_FOUND, "Course");
     }
 }
