@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleEntityNotValidConstraints(ConstraintViolationException exception){
+    public ErrorResponse handleEntityNotValidConstraints(ConstraintViolationException exception) {
         return new ErrorResponse(exception.getConstraintViolations().iterator().next().getMessageTemplate()
                 , 400
                 , String.format(
@@ -26,6 +26,10 @@ public class GlobalExceptionHandler {
                 exception.getConstraintViolations().iterator().next().getPropertyPath().toString(), // Nombre del campo
                 exception.getConstraintViolations().iterator().next().getInvalidValue()             // Valor rechazado
         ));
+    }
+    @ExceptionHandler(EntityNotUniqueException.class)
+    public ResponseEntity<ErrorResponse> handleEntityNotUnique(EntityNotUniqueException exception){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(exception.getMessage(), exception.getStatus(), exception.getAdditionalInfo()));
     }
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGenericException(Exception exception) {

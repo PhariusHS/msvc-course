@@ -7,7 +7,8 @@ import lombok.Getter;
 @Getter
 public enum ErrorMessages {
 
-    ENTITY_NOT_FOUND(" Not Found", HttpStatus.NOT_FOUND.value(), "Not entity with ID founded")
+    ENTITY_NOT_FOUND(" Not Found", HttpStatus.NOT_FOUND.value(), "Not entity with provided ID founded"),
+    ENTITY_NOT_UNIQUE("Repeated value: ", HttpStatus.BAD_REQUEST.value(), "An entity with this field value already exists")
     ;
 
     private final String message;

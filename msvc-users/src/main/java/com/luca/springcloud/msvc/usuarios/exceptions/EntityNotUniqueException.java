@@ -6,18 +6,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Getter
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class EntityNotFoundException extends RuntimeException{
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+public class EntityNotUniqueException extends RuntimeException{
 
     private final int status;
     private final String additionalInfo;
 
-    public EntityNotFoundException(ErrorMessages errorMessages, String entity){
-        super(entity + ErrorMessages.ENTITY_NOT_FOUND.getMessage());
+    public EntityNotUniqueException(ErrorMessages errorMessages, String value){
+        super(ErrorMessages.ENTITY_NOT_UNIQUE.getMessage() + value );
         this.status = errorMessages.getStatus();
         this.additionalInfo = errorMessages.getAdditionalInfo();
-
-
     }
-
 }

@@ -16,6 +16,7 @@ public class User {
     @Size(min = 3, message = "Name should have at least 3 characters")
     private String name;
 
+
     @NotEmpty(message = "Email is necessary")
     @Email(message = "Not correct email format")
     @Column(unique = true)
