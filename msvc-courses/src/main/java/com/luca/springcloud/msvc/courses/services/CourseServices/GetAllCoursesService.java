@@ -1,4 +1,4 @@
-package com.luca.springcloud.msvc.courses.UserServices;
+package com.luca.springcloud.msvc.courses.services.CourseServices;
 
 import com.luca.springcloud.msvc.courses.Query;
 import com.luca.springcloud.msvc.courses.models.Course;

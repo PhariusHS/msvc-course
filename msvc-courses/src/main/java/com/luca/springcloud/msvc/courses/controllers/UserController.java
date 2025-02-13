@@ -1,10 +1,10 @@
 package com.luca.springcloud.msvc.courses.controllers;
 
 
-import com.luca.springcloud.msvc.courses.UserServices.CreateCourseService;
-import com.luca.springcloud.msvc.courses.UserServices.DeleteCourseService;
-import com.luca.springcloud.msvc.courses.UserServices.GetAllCoursesService;
-import com.luca.springcloud.msvc.courses.UserServices.GetCourseByIdService;
+import com.luca.springcloud.msvc.courses.services.CourseServices.CreateCourseService;
+import com.luca.springcloud.msvc.courses.services.CourseServices.DeleteCourseService;
+import com.luca.springcloud.msvc.courses.services.CourseServices.GetAllCoursesService;
+import com.luca.springcloud.msvc.courses.services.CourseServices.GetCourseByIdService;
 import com.luca.springcloud.msvc.courses.models.Course;
 import com.luca.springcloud.msvc.courses.models.CourseDTO;
 import org.springframework.http.ResponseEntity;
