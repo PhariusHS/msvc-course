@@ -1,10 +1,7 @@
 package com.luca.springcloud.msvc.courses.controllers;
 
 
-import com.luca.springcloud.msvc.courses.services.CourseServices.CreateCourseService;
-import com.luca.springcloud.msvc.courses.services.CourseServices.DeleteCourseService;
-import com.luca.springcloud.msvc.courses.services.CourseServices.GetAllCoursesService;
-import com.luca.springcloud.msvc.courses.services.CourseServices.GetCourseByIdService;
+import com.luca.springcloud.msvc.courses.services.CourseServices.*;
 import com.luca.springcloud.msvc.courses.models.Course;
 import com.luca.springcloud.msvc.courses.models.CourseDTO;
 import org.springframework.http.ResponseEntity;
@@ -20,17 +17,21 @@ public class CourseController {
     private final GetCourseByIdService getCourseByIdService;
     private final CreateCourseService createCourseService;
     private final DeleteCourseService deleteCourseService;
+    private final GetCourseByIdWithUsersDetailService getCourseByIdWithUsersDetailService;
+
 
     public CourseController(GetAllCoursesService getAllCoursesService,
                             GetCourseByIdService getCourseByIdService,
                             CreateCourseService  createCourseService,
-                            DeleteCourseService  deleteCourseService)
+                            DeleteCourseService  deleteCourseService,
+                            GetCourseByIdWithUsersDetailService getCourseByIdWithUsersDetailService)
     {
 
         this.getAllCoursesService = getAllCoursesService;
         this.getCourseByIdService = getCourseByIdService;
         this.createCourseService = createCourseService;
         this.deleteCourseService = deleteCourseService;
+        this.getCourseByIdWithUsersDetailService = getCourseByIdWithUsersDetailService;
     }
 
     @GetMapping
@@ -40,7 +41,7 @@ public class CourseController {
 
     @GetMapping("/{id}")
     public ResponseEntity<CourseDTO> getCourseById(@PathVariable Long id){
-        return getCourseByIdService.execute(id);
+        return getCourseByIdWithUsersDetailService.execute(id);
     }
 
     @PostMapping

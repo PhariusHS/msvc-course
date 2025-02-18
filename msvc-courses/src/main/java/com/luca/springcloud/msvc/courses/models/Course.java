@@ -1,8 +1,11 @@
 package com.luca.springcloud.msvc.courses.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 
 import java.util.List;
 
@@ -23,7 +26,8 @@ public class Course {
     private List<CourseUser> courseUsers;
 
     @Transient
-    private List<CourseDTO> users;
+    @JsonIgnore
+    private List<UserDTO> users;
 
 
     public void addCourseUser(CourseUser courseUser){
@@ -57,11 +61,11 @@ public class Course {
         this.courseUsers = courseUsers;
     }
 
-    public List<CourseDTO> getUsers() {
+    public List<UserDTO> getUsers() {
         return users;
     }
 
-    public void setUsers(List<CourseDTO> users) {
+    public void setUsers(List<UserDTO> users) {
         this.users = users;
     }
 }

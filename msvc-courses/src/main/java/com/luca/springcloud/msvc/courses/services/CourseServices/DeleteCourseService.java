@@ -24,8 +24,8 @@ public class DeleteCourseService implements Command<Long, Void> {
 
     @Override
     public ResponseEntity<Void> execute(Long id) {
-        Optional<Course> foundedUser = courseRepository.findById(id);
-        if(foundedUser.isPresent()){
+        Optional<Course> foundedCourse = courseRepository.findById(id);
+        if(foundedCourse.isPresent()){
             courseRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
