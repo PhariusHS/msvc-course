@@ -13,7 +13,7 @@ public class User {
     private Long id;
 
     @NotNull(message = "Name is necessary")
-    @Size(min = 3, message = "Name should have at least 3 characters")
+    @Size(min = 2, message = "Name should have at least 2 characters")
     private String name;
 
 
